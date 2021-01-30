@@ -1,7 +1,7 @@
 # yOurVocabulary
-1. Make sure to make the year and rating nullable from the start
+1. Make sure to make the year and rating nullable from the start-done
 2. Add information to the account controller
-3. Make sure to let the text field accept the whole story
+3. Make sure to let the text field accept the whole story-done
 4. Leave out profile view for create
 5. When you add an image url you display the image
 6. Change the entire shared index page
