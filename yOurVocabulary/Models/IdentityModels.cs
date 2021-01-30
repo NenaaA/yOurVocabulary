@@ -29,5 +29,10 @@ namespace yOurVocabulary.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Story> Stories { get; set; }
+
+        public DbSet<Profile> Profiles { get; set; }
+
+        public DbSet<Word> Words { get; set; }
     }
 }
