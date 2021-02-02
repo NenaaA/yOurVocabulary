@@ -65,6 +65,8 @@ namespace yOurVocabulary.Models
     public class RegisterViewModel
     {
         [Required]
+        public string ProfileName { get; set; }
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

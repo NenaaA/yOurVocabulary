@@ -10,7 +10,8 @@ namespace yOurVocabulary.Models
     {
         [Key]
         public int Id { get; set; }
-        public String ProfileName { get; set; }
+        public string ProfileName { get; set; }
+        public string Email{ get; set; }
         public List<Word> TranslatedWords { get; set; }
         public List<Story> ReadStories { get; set; }
         public virtual ICollection<Story> Stories { get; set; }
