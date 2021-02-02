@@ -30,7 +30,8 @@ namespace yOurVocabulary.Controllers
         {
             return View(new Admin.UserListModel() {
                 UserList = db.Users.ToList(),
-                RoleList = db.Roles.ToList()
+                RoleList = db.Roles.ToList(),
+                CreatorCandidates = db.CreatorApplications.ToList()
             });
         }
         public ActionResult ChangeRole(string id)
@@ -41,7 +42,7 @@ namespace yOurVocabulary.Controllers
             return View(new Admin.ChangeRoleModel()
             {
                 UserId = id,
-                UserName = user.UserName,
+                Email = user.UserName,
                 CurrentRoleName = db.Roles.Where(r=>r.Id==roleId.ToString()).Select(r=>r.Name).First(),
                 RoleList = db.Roles.ToList()
             });
@@ -58,10 +59,27 @@ namespace yOurVocabulary.Controllers
                 UserManager.RemoveFromRole(model.UserId, model.CurrentRoleName);
                 UserManager.AddToRole(model.UserId, role);
 
+                //delete the creator application if exists
+                if (role.Equals("Creator"))
+                {
+                    var application = db.CreatorApplications.FirstOrDefault(c => c.Email == model.Email);
+                    if (application != null)
+                    {
+                        db.CreatorApplications.Remove(application);
+                        db.SaveChanges();
+                    }
+                }
 
                 return RedirectToAction("UserList");
             }
             return View(model);
+        }
+        public ActionResult DeleteApplication(int id)
+        {
+            var candidate = db.CreatorApplications.Find(id);
+            db.CreatorApplications.Remove(candidate);
+            db.SaveChanges();
+            return RedirectToAction("UserList");
         }
     }
 }

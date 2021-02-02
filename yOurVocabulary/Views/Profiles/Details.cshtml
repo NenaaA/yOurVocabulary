@@ -13,13 +13,15 @@
         <dt>
             @Html.DisplayNameFor(model => model.ProfileName)
         </dt>
-
+        Currently Reading:
+        yOur Words:
         <dd>
             @Html.DisplayFor(model => model.ProfileName)
         </dd>
     </dl>
 </div>
 <p>
+    @Html.ActionLink("Become a Creator", "BecomeCreator", new { id = Model.Id }) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

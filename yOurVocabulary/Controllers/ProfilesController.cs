@@ -20,6 +20,29 @@ namespace yOurVocabulary.Controllers
             return View(db.Profiles.ToList());
         }
 
+        public ActionResult BecomeCreator(int id)
+        {
+            return View(new CreatorApplication()
+            {
+                Email = db.Profiles.Find(id).Email
+            });
+        }
+        [HttpPost]
+        public ActionResult BecomeCreator(CreatorApplication model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            db.CreatorApplications.Add(new CreatorApplication()
+            {
+                Email = model.Email,
+                Message = model.Message
+            });
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         // GET: Profiles/Details/5
         public ActionResult Details(int? id)
         {

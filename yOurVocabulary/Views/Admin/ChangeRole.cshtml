@@ -3,13 +3,14 @@
     ViewBag.Title = "ChangeRole";
 }
 
-<h2>Changing the role of: @Model.UserName from @Model.CurrentRoleName</h2>
+<h2>Changing the role of: @Model.Email from @Model.CurrentRoleName</h2>
 
 @using (Html.BeginForm())
 {
     <form class="form-horizontal">
         @Html.HiddenFor(m => m.UserId)
         @Html.HiddenFor(m=>m.CurrentRoleName)
+        @Html.HiddenFor(m=>m.Email)
         <div class="form-group">
             @Html.LabelFor(m => m.SelectedRoleId, "New Role")
             @Html.DropDownListFor(m => m.SelectedRoleId, new SelectList(Model.RoleList, "Id", "Name"), new { @class = "form-control" })

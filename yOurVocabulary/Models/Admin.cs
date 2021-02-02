@@ -18,11 +18,12 @@ namespace yOurVocabulary.Models
         {
             public List<ApplicationUser> UserList { get; set; }
             public List<IdentityRole> RoleList { get; set; }
+            public List<CreatorApplication> CreatorCandidates{ get; set; }
         }
         public class ChangeRoleModel
         {
             public string UserId { get; set; }
-            public string UserName { get; set; }
+            public string Email { get; set; }
             public string CurrentRoleName { get; set; }
             public int  SelectedRoleId { get; set; }
             public List<IdentityRole> RoleList { get; set; }

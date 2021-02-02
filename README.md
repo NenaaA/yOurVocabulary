@@ -11,6 +11,6 @@
 10. Make view for appointing roles to users for admin--done
 11. An editor applies for editorship which admins then accept
 12. A user can request a change on a story. (new image, a correction in content etc.) and editors evaluate the requests.
-13. Email and the username are the same, make it so that users can pick their usernames.
+13. Email and the username are the same, make it so that users can pick their usernames(ProfileName, not unique).--
 14. Give users the option to delete accounts.(write username as confirmation like on github)
-15. When user gets registered, at appropriate info to profile table.
+15. When user gets registered, at appropriate info to profile table.-done
