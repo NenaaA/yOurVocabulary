@@ -32,7 +32,17 @@ namespace yOurVocabulary.Controllers
             {
                 return HttpNotFound();
             }
-            return View(story);
+
+            var model = new DisplayStoryModel() {
+                Author = story.Author,
+                Title = story.Title,
+                Language = story.Language,
+                Year = story.YearWritten,
+                ImageURL = story.ImageURL,
+                Words = story.TheStory.Split(' ').ToList()
+            }; 
+
+            return View(model);
         }
 
         // GET: Stories/Create
