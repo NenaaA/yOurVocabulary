@@ -1,0 +1,25 @@
+﻿@model yOurVocabulary.Models.Admin.ChangeRoleModel
+@{
+    ViewBag.Title = "ChangeRole";
+}
+
+<h2>Changing the role of: @Model.UserName from @Model.CurrentRoleName</h2>
+
+@using (Html.BeginForm())
+{
+    <form class="form-horizontal">
+        @Html.HiddenFor(m => m.UserId)
+        @Html.HiddenFor(m=>m.CurrentRoleName)
+        <div class="form-group">
+            @Html.LabelFor(m => m.SelectedRoleId, "New Role")
+            @Html.DropDownListFor(m => m.SelectedRoleId, new SelectList(Model.RoleList, "Id", "Name"), new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+}
+
+

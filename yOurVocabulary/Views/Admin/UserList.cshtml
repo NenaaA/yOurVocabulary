@@ -1,0 +1,19 @@
+﻿@model yOurVocabulary.Models.Admin.UserListModel
+@{
+    ViewBag.Title = "UserList";
+}
+
+<h2>UserList</h2>
+<ol>
+    @foreach (var item in Model.UserList)
+    {
+
+        <li>@item.Email - @Model.RoleList.Where(r => r.Id == @item.Roles.First().RoleId).Select(r => r.Name).First()</li>
+        @Html.ActionLink("Change Role", "ChangeRole", new { id = @item.Id})
+    }
+</ol>
+
+
+
+
+

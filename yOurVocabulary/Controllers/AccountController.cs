@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -155,8 +156,15 @@ namespace yOurVocabulary.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+                    ApplicationDbContext db = new ApplicationDbContext();
+                    var defaultRoleId = db.Roles.Where(r => r.Name == "User").Select(r => r.Id).First();
+                    UserManager.AddToRole(user.Id, "User");
+
+
+                    //need to change all ids to string to have compatibility with identity
+
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

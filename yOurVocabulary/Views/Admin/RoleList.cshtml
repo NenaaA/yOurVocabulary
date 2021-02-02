@@ -1,0 +1,15 @@
+﻿@model yOurVocabulary.Models.Admin.RoleListModel
+
+@{
+    ViewBag.Title = "RoleList";
+}
+
+<h2>RoleList</h2>
+<h5>Default Role : @Model.DefaultRole.Id - @Model.DefaultRole.Name</h5>
+<ol>
+    @foreach (var item in Model.RoleList)
+    {
+        <li>@item.Id - @item.Name</li>
+    }
+</ol>
+

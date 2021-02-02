@@ -8,3 +8,9 @@
 7. *Yellow* gree, and blue(we'll figure it out later)
 8. Don't forget to add api
 9. Add function to keep words in the story model
+10. Make view for appointing roles to users for admin--done
+11. An editor applies for editorship which admins then accept
+12. A user can request a change on a story. (new image, a correction in content etc.) and editors evaluate the requests.
+13. Email and the username are the same, make it so that users can pick their usernames.
+14. Give users the option to delete accounts.(write username as confirmation like on github)
+15. When user gets registered, at appropriate info to profile table.
