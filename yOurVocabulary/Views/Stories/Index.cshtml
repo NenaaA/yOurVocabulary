@@ -83,9 +83,9 @@
             <li class="list-group-item">@item.YearWritten</li>
         </ul>
         <div class="card-body">
-            <a href='@Url.Action("Details", new {id=@item.Id})' class="btn btn-primary">Read</a>
-            <a href='@Url.Action("Edit", new {id=@item.Id})' class="btn btn-success">Edit</a>
-            <a href='@Url.Action("Delete", new {id=@item.Id})' class="btn btn-danger">Delete</a>
+            <a href='@Url.Action("Details", new {id=@item.StoryId})' class="btn btn-primary">Read</a>
+            <a href='@Url.Action("Edit", new {id=@item.StoryId})' class="btn btn-success">Edit</a>
+            <a href='@Url.Action("Delete", new {id=@item.StoryId})' class="btn btn-danger">Delete</a>
         </div>
     </div>
 </div>

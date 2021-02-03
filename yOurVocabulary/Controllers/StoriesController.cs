@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -13,6 +14,33 @@ namespace yOurVocabulary.Controllers
     public class StoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        public ActionResult Finish(int? id, int? rating)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Story story = db.Stories.Find(id);
+            if (story == null)
+            {
+                return HttpNotFound();
+            }
+
+            var userId = User.Identity.GetUserId();
+            var userStory = db.ProfileStories.Where(p => p.StoryId == id && p.Profile.ProfileUser.Id == userId).FirstOrDefault();
+
+            if (!userStory.Read)
+            {
+                userStory.Read = true;
+                userStory.Rating = rating;
+
+                db.SaveChanges();
+            }
+
+            
+            return RedirectToAction("Index");
+        }
 
         // GET: Stories
         public ActionResult Index()
@@ -33,13 +61,33 @@ namespace yOurVocabulary.Controllers
                 return HttpNotFound();
             }
 
+            var userId = User.Identity.GetUserId();
+            var profileStory = db.ProfileStories.Where(p => p.Profile.ProfileUser.Id == userId && p.StoryId == id).FirstOrDefault();
+            //then create a new currently reading relationship between the story
+            //and the logged in user
+            if (profileStory == null)
+            {
+                var profileStoryModel = new ProfileStory()
+                {
+                    Profile = db.Profiles.Where(p => p.ProfileUser.Id == userId).First(),
+                    Story = db.Stories.Where(s => s.StoryId == id).First(),
+                    Read = false
+                };
+                db.ProfileStories.Add(profileStoryModel);
+                db.SaveChanges();
+            }
+
+            profileStory = db.ProfileStories.Where(p => p.Profile.ProfileUser.Id == userId && p.StoryId == id).FirstOrDefault();
+
             var model = new DisplayStoryModel() {
+                StoryId = story.StoryId,
                 Author = story.Author,
                 Title = story.Title,
                 Language = story.Language,
                 Year = story.YearWritten,
                 ImageURL = story.ImageURL,
-                Words = story.TheStory.Split(' ').ToList()
+                Words = story.TheStory.Split(' ').ToList(),
+                Read=profileStory.Read
             }; 
 
             return View(model);
@@ -62,6 +110,25 @@ namespace yOurVocabulary.Controllers
             {
                 db.Stories.Add(story);
                 db.SaveChanges();
+
+                var words = story.TheStory.Split(' ');
+                foreach (var word in words)
+                {
+                    var wordModel = new Word()
+                    {
+                        Name = word
+                    };
+                    db.Words.Add(wordModel);
+                    db.SaveChanges();
+                    var storyWordsModel = new StoryWord()
+                    {
+                        Story = story,
+                        Word = wordModel
+                    };
+                    db.StoryWords.Add(storyWordsModel);
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
 

@@ -9,9 +9,9 @@ namespace yOurVocabulary.Models
     public class Word
     {
         [Key]
-        public int Id { get; set; }
-        public String WordName { get; set; }
-        public int CheckedCount { get; set; }
-        public List<DateTime> CheckedLog { get; set; }
+        public int WordId { get; set; }
+        public String Name { get; set; }
+        public virtual ICollection<StoryWord> StoryWords { get; set; }
+        public virtual ICollection<ProfileWord> ProfileWords { get; set; }
     }
 }

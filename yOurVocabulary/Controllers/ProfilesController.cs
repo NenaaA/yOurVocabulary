@@ -20,13 +20,13 @@ namespace yOurVocabulary.Controllers
             return View(db.Profiles.ToList());
         }
 
-        public ActionResult BecomeCreator(int id)
-        {
-            return View(new CreatorApplication()
-            {
-                Email = db.Profiles.Find(id).Email
-            });
-        }
+        //public ActionResult BecomeCreator(int id)
+        //{
+        //    return View(new CreatorApplication()
+        //    {
+        //        Email = db.Profiles.Find(id).
+        //    });
+        //}
         [HttpPost]
         public ActionResult BecomeCreator(CreatorApplication model)
         {

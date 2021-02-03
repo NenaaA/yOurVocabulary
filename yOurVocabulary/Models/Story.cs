@@ -10,7 +10,7 @@ namespace yOurVocabulary.Models
     public class Story
     {
         [Key]
-        public int Id { get; set; }
+        public int StoryId { get; set; }
         public String Author { get; set; }
         [Required]
         public String Title { get; set; }
@@ -24,10 +24,7 @@ namespace yOurVocabulary.Models
         [Required]
         [Display(Name = "The Story")]
         public String TheStory { get; set; }
-        public virtual ICollection<Word> Words { get; set; }
-        public Story()
-        {
-            Words = new List<Word>();
-        }
+        public virtual ICollection<StoryWord> StoryWords { get; set; }
+        public virtual ICollection<ProfileStory> ProfileStories { get; set; }
     }
 }
