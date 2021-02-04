@@ -161,13 +161,23 @@ namespace yOurVocabulary.Controllers
                     var defaultRoleId = db.Roles.Where(r => r.Name == "User").Select(r => r.Id).First();
                     UserManager.AddToRole(user.Id, "User");
 
+
                     var profile = new Profile()
                     {
                         ProfileName = model.ProfileName,
-                        Email = model.Email
+                        ProfileUser = db.Users.FirstOrDefault(u => u.Email.Equals(model.Email))
                     };
+
                     db.Profiles.Add(profile);
                     db.SaveChanges();
+
+                    //var profile = new Profile()
+                    //{
+                    //    ProfileName = model.ProfileName,
+                    //    Email = model.Email
+                    //};
+                    //db.Profiles.Add(profile);
+                    //db.SaveChanges();
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

@@ -9,17 +9,15 @@ namespace yOurVocabulary.Models
     public class Profile
     {
         [Key]
-        public int Id { get; set; }
+        public int ProfileId { get; set; }
         public string ProfileName { get; set; }
-        public string Email{ get; set; }
-        public List<Word> TranslatedWords { get; set; }
-        public List<Story> ReadStories { get; set; }
-        public virtual ICollection<Story> Stories { get; set; }
-        public Profile()
-        {
-            TranslatedWords = new List<Word>();
-            ReadStories = new List<Story>();
-            Stories = new List<Story>();
-        }
+        public virtual ApplicationUser ProfileUser { get; set; }
+        public virtual ICollection<ProfileStory> ProfileStories { get; set; }
+        public virtual ICollection<ProfileWord> ProfileWords { get; set; }
+        //public Profile()
+        //{
+        //    ProfileStories = new List<ProfileStory>();
+        //    ProfileWords = new List<ProfileWord>();
+        //}
     }
 }

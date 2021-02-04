@@ -22,9 +22,10 @@ namespace yOurVocabulary.Controllers
 
         public ActionResult BecomeCreator(int id)
         {
+            var userId = db.Profiles.FirstOrDefault(p => p.ProfileId == id).ProfileUser.Id;
             return View(new CreatorApplication()
             {
-                Email = db.Profiles.Find(id).Email
+                UserId = db.Users.FirstOrDefault(u=>u.Id==userId).Id
             });
         }
         [HttpPost]
@@ -34,11 +35,7 @@ namespace yOurVocabulary.Controllers
             {
                 return View(model);
             }
-            db.CreatorApplications.Add(new CreatorApplication()
-            {
-                Email = model.Email,
-                Message = model.Message
-            });
+            db.CreatorApplications.Add(model);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -101,13 +98,17 @@ namespace yOurVocabulary.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProfileName")] Profile profile)
+        public ActionResult Edit([Bind(Include = "ProfileId,ProfileName")] Profile profile)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(profile).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var prevProfile = db.Profiles.FirstOrDefault(p => p.ProfileId == profile.ProfileId);
+                if (!prevProfile.ProfileName.Equals(profile.ProfileName))
+                {
+                    prevProfile.ProfileName = profile.ProfileName;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
             return View(profile);
         }

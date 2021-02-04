@@ -17,19 +17,32 @@
     </blockquote>
     <hr />
     <div style="font-family:'Lora', serif; max-width:80%; text-align:center; font-size:large; margin:auto">
-    @{var i = 0; }
-    @foreach(var item in Model.Words){
-    <span data-toggle="popover" data-trigger="hover" data-placement="top" title="@item" data-content="stories"id="word-@i">@item</span>
-        i++;
-    }
-
-    <br /><br />
+        @{var i = 0; }
+        @foreach (var item in Model.Words)
+        {
+            <span data-toggle="popover" data-trigger="hover" data-placement="top" title="@item" data-content="workngggggggggggggg" id="word-@i">@item</span>
+            i++;
+        }
     </div>
 </div>
 <hr />
 @*<button type="button" class="btn btn-danger" data-container="body" data-toggle="popover" data-placement="top" title=" hola!! " data-content="worknggg   ">
-    top popover
-</button>*@
+        top popover
+    </button>*@
+@{
+    if (Model.Read)
+    {
+        <button type="button" class="btn btn-success" id="finish" style="float:right;" disabled>
+            Read
+        </button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-success" id="finish" style="float:right;">
+            Finish
+        </button>
+    }
+}
 
 <p>
     @Html.ActionLink("Back to List", "Index")
@@ -39,5 +52,86 @@
         $(function () {
             $('[data-toggle="popover"]').popover()
         });
+
+        function sendAjax(rating) {
+            console.log('@Url.Action("Finish", "Stories", new { id=Model.StoryId})?rating=' + rating);
+
+            $.ajax({
+                url: '@Url.Action("Finish", "Stories", new { id=Model.StoryId})?rating=' + rating,
+                method: "GET",
+                success: function () {
+                    console.log("hehe");
+                    $('#finish').prop('disabled', 'true');
+                }
+            })
+        }
+
+
+        $('#finish').on('click', function () {
+            console.log(1);
+            bootbox.confirm({
+                size: "extra-large",
+                message: "Please rate in order to finish the story",
+                callback: function (result) {
+                    if (result) {
+                        bootbox.dialog({
+                            title: 'Rating',
+                            message: '<p>How did you like this story?</p>',
+                            size: 'extra-large',
+                            onEscape: true,
+                            backdrop: true,
+                            buttons: {
+                                one: {
+                                    label: '1',
+                                    className: 'btn-danger',
+                                    callback: function () {
+                                        console.log(1);
+                                        sendAjax(1);
+                                    }
+                                },
+                                two: {
+                                    label: '2',
+                                    className: 'btn-warning',
+                                    callback: function () {
+                                        console.log(2);
+                                        rating = 2;
+                                        sendAjax(2);
+                                    }
+                                },
+                                three: {
+                                    label: '3',
+                                    className: 'btn-info',
+                                    callback: function () {
+                                        console.log(3);
+                                        rating = 3;
+                                        sendAjax(3);
+                                    }
+                                },
+                                four: {
+                                    label: '4',
+                                    className: 'btn-primary',
+                                    callback: function () {
+                                        console.log(4);
+                                        rating = 4;
+                                        sendAjax(4);
+                                    }
+                                },
+                                five: {
+                                    label: '5',
+                                    className: 'btn-success',
+                                    callback: function () {
+                                        console.log(5);
+                                        rating = 5;
+                                        sendAjax(5);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+        });
+
     </script>
 }

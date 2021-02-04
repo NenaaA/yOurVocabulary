@@ -35,5 +35,9 @@ namespace yOurVocabulary.Models
 
         public DbSet<Word> Words { get; set; }
         public DbSet<CreatorApplication> CreatorApplications { get; set; }
+        public DbSet<ProfileStory> ProfileStories { get; set; }
+        public DbSet<ProfileWord> ProfileWords { get; set; }
+        public DbSet<StoryWord> StoryWords { get; set; }
+        public DbSet<Language> Languages { get; set; }
     }
 }
