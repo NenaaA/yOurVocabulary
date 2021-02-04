@@ -2,30 +2,45 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-image: linear-gradient(#0e9524, #00d4ff);
+    }
+    .image-blurred-edge {
+        background-image: url('http://lorempixel.com/200/200/city/9');
+        width: 200px;
+        height: 200px;
+        /* you need to match the shadow color to your background or image border for the desired effect*/
+        box-shadow: 0 0 8px 8px rgba(207, 255, 237, 0.4);
+    }
+</style>
+<div class="jumbotron" style="        background-color: rgba(89, 255, 169, 0.2);
+        box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);
+        color: #f7fffc
+">
+    <h1>yOur Vocabulary</h1>
+    <p class="lead">Practise your language skills by reading short stories here</p>
+    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div class="row" style="        font-family: 'Montserrat', sans-serif;">
+    <div class="col-md-4" style="background-color:rgba(207, 255, 237, 0.4); border-radius:10px; margin:0.5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
+        <h4>We offer a large variety of stories in different languages to improve your language skills</h4>
+
+       
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="col-md-4" style="background-color:rgba(207, 255, 237, 0.4); border-radius:10px; margin:0.5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
+        <h4>Don't worry if you don't know the translation of a word. <br /><br />yOur Vocabulary will translate it right away!</h4>
+        <div><img class="image-blurred-edge" src="~/word1.png" style="max-height:200px; margin-left:20%;"/> </div> <br /><br />
+
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-4" style="background-color: rgba(207, 255, 237, 0.4); border-radius: 10px; max-width: 30%; margin: 0.5%; padding-bottom: 5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
+        <h2 style="        text-align: center;
+        margin-top: 20%
+">Join Now!</h2>
+        
+        <a class="btn btn-primary" style="width:98%; font-size:20px;" href="~/Account/Register">Register</a>
     </div>
 </div>

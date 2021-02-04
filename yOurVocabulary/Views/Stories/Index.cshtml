@@ -4,8 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Stories</h2>
+<style>
+    body {
+        height: 100%;
+        background-image: linear-gradient(#99ffd8, #e3fffe);
+    }
+</style>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -69,7 +74,10 @@
 
 </table> *@
 @foreach (var item in Model)
-{<div style="display:inline-block; margin-left:5px; margin-left:5px; margin-bottom:10px">
+{<div style="        display: inline-block;
+        margin-left: 5px;
+        margin-left: 5px;
+        margin-bottom: 10px">
     <div class="card" style="width: 19rem;">
         <img src="@item.ImageURL" class="card-img-top" alt="..." style="max-width:19rem">
         <div class="card-body">

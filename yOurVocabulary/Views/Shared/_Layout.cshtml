@@ -6,10 +6,17 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+<style>
+    #links li a{
+        color:black;
+    }
+    #links li a:hover{
+        color: darkslategrey;
+    }
+</style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#eff7f0; border-bottom-color:#eff7f0">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,14 +24,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <a href="@Url.Action("Index", "Home")" title="Home" class="links">
+                <img alt="Home" src="@Url.Content("~/thelogo1.png")" style="max-width:200px">
+            </a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" id="links">
                     @using Microsoft.AspNet.Identity
-                    <li>@Html.ActionLink("Stories", "Index", "Stories")</li>
-                    <li>@Html.ActionLink("Profile", "Index", "Profiles")</li>
-                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    <li style="margin-top:2%">@Html.ActionLink("Stories", "Index", "Stories")</li>
+                    <li style="margin-top:2%">@Html.ActionLink("Profile", "Index", "Profiles")</li>
+                    <li style="margin-top:2%">@Html.ActionLink("Admin", "Index", "Admin")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
