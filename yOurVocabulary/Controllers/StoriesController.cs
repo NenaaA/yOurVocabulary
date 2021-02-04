@@ -107,7 +107,7 @@ namespace yOurVocabulary.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Author,Title,YearWritten,Language,Rating,ImageURL,TheStory")] Story story)
+        public ActionResult Create([Bind(Include = "StoryId,Author,Title,YearWritten,Language,Rating,ImageURL,TheStory")] Story story)
         {
             if (ModelState.IsValid)
             {
@@ -118,19 +118,48 @@ namespace yOurVocabulary.Controllers
                 var words = story.TheStory.Split(' ');
                 foreach (var word in words)
                 {
-                    var wordModel = new Word()
+
+                    //avoid distinct words and punctuations
+
+                    string tempWord = word.ToLower();
+
+                    char firstLetter = tempWord[0];
+                    char lastLetter = tempWord[word.Length - 1];
+                    if (!Char.IsLetter(firstLetter))
                     {
-                        Name = word
-                    };
-                    db.Words.Add(wordModel);
-                    db.SaveChanges();
-                    var storyWordsModel = new StoryWord()
+                        tempWord = tempWord.Remove(0, 1);
+                    }
+                    if (!Char.IsLetter(lastLetter))
                     {
-                        Story = story,
-                        Word = wordModel
-                    };
-                    db.StoryWords.Add(storyWordsModel);
-                    db.SaveChanges();
+                        tempWord = tempWord.Remove(tempWord.Length - 1);
+                    }
+
+
+                    var wordModel = db.Words.FirstOrDefault(w => w.Name == tempWord);
+
+                    if (wordModel == null)
+                    {
+                        wordModel = new Word()
+                        {
+                            Name = tempWord
+                        }; 
+                        db.Words.Add(wordModel);
+                        db.SaveChanges();
+                    }
+
+                    var storyWordsModel = db.StoryWords.FirstOrDefault(sw => sw.StoryId == story.StoryId && sw.WordId == wordModel.WordId);
+
+                    if (storyWordsModel == null)
+                    {
+                        storyWordsModel = new StoryWord()
+                        {
+                            Story = story,
+                            Word = wordModel
+                        };
+                        db.StoryWords.Add(storyWordsModel);
+                        db.SaveChanges();
+                    }
+
                 }
 
                 return RedirectToAction("Index");
