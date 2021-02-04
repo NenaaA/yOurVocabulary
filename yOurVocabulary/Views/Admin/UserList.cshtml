@@ -12,14 +12,14 @@
         @item.Email - @Model.RoleList.Where(r => r.Id == @item.Roles.First().RoleId).Select(r => r.Name).First()
         <a href='@Url.Action("ChangeRole", new { id=@item.Id })' class="btn btn-primary">Change Role</a>
         @{
-            var candidate = Model.CreatorCandidates.Find(c => c.Email.Equals(item.Email));
+            var candidate = Model.CreatorCandidates.Find(c => c.UserId==item.Id);
             if (candidate != null)
             {
                 <div>
                             <div class="alert alert-info" role="alert">
                                 This user has applied for Creatorship!
                                 <a class="alert-link" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                    Check the application
+                                    Check the application message
                                 </a>
                                 <button data-id="@candidate.Id" class="btn btn-primary delete-ajax">Reject</button>
                             </div>

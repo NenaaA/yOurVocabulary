@@ -42,7 +42,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Language, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Language, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model=> model.Language.Code, new SelectList(ViewBag.Languages, "Code", "Name"), new { @class = "form-control"})
+                @*@Html.EditorFor(model => model.Language, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Language, "", new { @class = "text-danger" })
             </div>
         </div>

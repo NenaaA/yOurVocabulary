@@ -6,12 +6,10 @@ using System.Web;
 
 namespace yOurVocabulary.Models
 {
-    public class CreatorApplication
+    public class Language
     {
         [Key]
-        public int Id { get; set; }
-        public string UserId { get; set; }
-        [Required]
-        public string Message { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
     }
 }

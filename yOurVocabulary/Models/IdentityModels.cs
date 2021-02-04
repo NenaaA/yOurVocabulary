@@ -38,5 +38,6 @@ namespace yOurVocabulary.Models
         public DbSet<ProfileStory> ProfileStories { get; set; }
         public DbSet<ProfileWord> ProfileWords { get; set; }
         public DbSet<StoryWord> StoryWords { get; set; }
+        public DbSet<Language> Languages { get; set; }
     }
 }

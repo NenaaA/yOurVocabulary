@@ -62,7 +62,7 @@ namespace yOurVocabulary.Controllers
                 //delete the creator application if exists
                 if (role.Equals("Creator"))
                 {
-                    var application = db.CreatorApplications.FirstOrDefault(c => c.Email == model.Email);
+                    var application = db.CreatorApplications.FirstOrDefault(c => c.UserId==model.UserId);
                     if (application != null)
                     {
                         db.CreatorApplications.Remove(application);

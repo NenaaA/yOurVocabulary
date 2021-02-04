@@ -17,7 +17,7 @@ namespace yOurVocabulary.Models
         [Display (Name ="Year Written")]
         public int? YearWritten { get; set; }
         [Required]
-        public String Language { get; set; }
+        public virtual Language Language { get; set; }
         public float? Rating { get; set; }
         [Display(Name = "Image Link")]
         public String ImageURL { get; set; }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using yOurVocabulary.Migrations;
 using yOurVocabulary.Models;
 
 namespace yOurVocabulary.Controllers
@@ -83,7 +84,7 @@ namespace yOurVocabulary.Controllers
                 StoryId = story.StoryId,
                 Author = story.Author,
                 Title = story.Title,
-                Language = story.Language,
+                Language = db.Languages.FirstOrDefault(l=>l.Code==story.Language.Code).Name,
                 Year = story.YearWritten,
                 ImageURL = story.ImageURL,
                 Words = story.TheStory.Split(' ').ToList(),
@@ -96,6 +97,8 @@ namespace yOurVocabulary.Controllers
         // GET: Stories/Create
         public ActionResult Create()
         {
+            List<Language> Languages = db.Languages.ToList();
+            ViewBag.Languages = Languages;
             return View();
         }
 
@@ -108,6 +111,7 @@ namespace yOurVocabulary.Controllers
         {
             if (ModelState.IsValid)
             {
+                story.Language = db.Languages.FirstOrDefault(l => l.Code==story.Language.Code);
                 db.Stories.Add(story);
                 db.SaveChanges();
 
@@ -147,6 +151,8 @@ namespace yOurVocabulary.Controllers
             {
                 return HttpNotFound();
             }
+            List<Language> Languages = db.Languages.ToList();
+            ViewBag.Languages = Languages;
             return View(story);
         }
 
@@ -155,7 +161,7 @@ namespace yOurVocabulary.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Author,Title,YearWritten,Language,Rating,ImageURL,TheStory")] Story story)
+        public ActionResult Edit([Bind(Include = "StoryId,Author,Title,YearWritten,Language,Rating,ImageURL,TheStory")] Story story)
         {
             if (ModelState.IsValid)
             {
