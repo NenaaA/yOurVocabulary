@@ -3,39 +3,97 @@
     ViewBag.Title = "UserList";
 }
 
-<h2>UserList</h2>
+<h2>User List</h2>
 <ol>
-    @foreach (var item in Model.UserList)
-    {
+        @foreach (var item in Model.UserList)
+        {
 
-    <li>
-        @item.Email - @Model.RoleList.Where(r => r.Id == @item.Roles.First().RoleId).Select(r => r.Name).First()
-        <a href='@Url.Action("ChangeRole", new { id=@item.Id })' class="btn btn-primary">Change Role</a>
-        @{
-            var candidate = Model.CreatorCandidates.Find(c => c.Email.Equals(item.Email));
-            if (candidate != null)
-            {
-                <div>
-                            <div class="alert alert-info" role="alert">
-                                This user has applied for Creatorship!
-                                <a class="alert-link" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                    Check the application
-                                </a>
-                                <button data-id="@candidate.Id" class="btn btn-primary delete-ajax">Reject</button>
+        <li>
+            @item.Email - @Model.RoleList.Where(r => r.Id == @item.Roles.First().RoleId).Select(r => r.Name).First()
+            <a href='@Url.Action("ChangeRole", new { id=@item.Id })' class="btn btn-primary">Change Role</a>
+            @{
+                var candidate = Model.CreatorCandidates.Find(c => c.Email.Equals(item.Email));
+                if (candidate != null)
+                {
+                    <div>
+                                <div class="alert alert-info" role="alert">
+                                    This user has applied for Creatorship!
+                                    <a class="alert-link" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        Check the application
+                                    </a>
+                                    <button data-id="@candidate.Id" class="btn btn-primary delete-ajax">Reject</button>
+                                </div>
+                        <div class="collapse" id="collapseExample">
+                            <div class="well">
+                                <i>@candidate.Message</i>
                             </div>
-                    <div class="collapse" id="collapseExample">
-                        <div class="well">
-                            <i>@candidate.Message</i>
                         </div>
                     </div>
-                </div>
+                }
             }
-        }
-    </li>
+        </li>
 
-    }
+        }
 </ol>
 
+@*<table class="table">
+        <tr>
+            <th>
+                @item.Email
+            </th>
+            <th>
+                @Model.RoleList.Where(r => r.Id == @item.Roles.First().RoleId).Select(r => r.Name).First()
+            </th>
+            <th>
+                <a href='@Url.Action("ChangeRole", new { id=@item.Id })' class="btn btn-primary">Change Role</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TheStory)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @Model.RoleList.Where(r => r.Id == @item.Roles.First().RoleId).Select(r => r.Name).First()
+            </td>
+            <td>
+                <a href='@Url.Action("ChangeRole", new { id=@item.Id })' class="btn btn-primary">Change Role</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <img src="@item.ImageURL" style="max-width:300px"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TheStory) dont display later
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+
+    </table>*@
 
 
 @section scripts {
