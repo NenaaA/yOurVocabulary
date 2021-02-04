@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,12 +32,36 @@ namespace yOurVocabulary.Controllers
             var userId = User.Identity.GetUserId();
             var userStory = db.ProfileStories.Where(p => p.StoryId == id && p.Profile.ProfileUser.Id == userId).FirstOrDefault();
 
+            //userStory relation
             if (!userStory.Read)
             {
                 userStory.Read = true;
                 userStory.Rating = rating;
 
                 db.SaveChanges();
+            }
+
+            var profile = db.Profiles.FirstOrDefault(p => p.ProfileUser.Id == userId);
+
+            //userWord relations
+            var storyWords = db.StoryWords.Where(sw => sw.StoryId == story.StoryId).Select(sw=>sw.Word).ToList();
+            foreach (var storyWord in storyWords)
+            {
+                var profileWord = db.ProfileWords.FirstOrDefault(pw => pw.Profile.ProfileUser.Id == userId && pw.WordId == storyWord.WordId);
+                
+                if (profileWord == null)
+                {
+                    var word = db.Words.FirstOrDefault(w => w.WordId == storyWord.WordId);
+                    profileWord = new ProfileWord()
+                    {
+                        Profile = profile,
+                        Word = word,
+                        CheckedCount = 0,
+                        LastChecked=null
+                    };
+                    db.ProfileWords.Add(profileWord);
+                    db.SaveChanges();
+                }
             }
 
             
@@ -124,14 +149,16 @@ namespace yOurVocabulary.Controllers
                     string tempWord = word.ToLower();
 
                     char firstLetter = tempWord[0];
-                    char lastLetter = tempWord[word.Length - 1];
-                    if (!Char.IsLetter(firstLetter))
+                    char lastLetter = tempWord[tempWord.Length - 1];
+                    while (!Char.IsLetter(firstLetter))
                     {
-                        tempWord = tempWord.Remove(0, 1);
+                        tempWord = tempWord.Remove(0, 1); 
+                        firstLetter = tempWord[0];
                     }
-                    if (!Char.IsLetter(lastLetter))
+                    while (!Char.IsLetter(lastLetter))
                     {
                         tempWord = tempWord.Remove(tempWord.Length - 1);
+                        lastLetter = tempWord[tempWord.Length - 1];
                     }
 
 
@@ -194,7 +221,13 @@ namespace yOurVocabulary.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(story).State = EntityState.Modified;
+                var prevStory = db.Stories.FirstOrDefault(s => s.StoryId == story.StoryId);
+                prevStory.Language = db.Languages.FirstOrDefault(l => l.Code == story.Language.Code);
+                prevStory.Author = story.Author;
+                prevStory.Title = story.Title;
+                prevStory.YearWritten = story.YearWritten;
+                prevStory.ImageURL = story.ImageURL;
+                prevStory.TheStory = story.TheStory;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

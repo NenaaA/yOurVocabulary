@@ -19,7 +19,7 @@ namespace yOurVocabulary.Models
 
 
         //additional attributes to relation
-        public DateTime LastChecked { get; set; }
+        public DateTime? LastChecked { get; set; }
         public int CheckedCount { get; set; }
     }
 }

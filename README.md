@@ -14,3 +14,5 @@
 13. Email and the username are the same, make it so that users can pick their usernames(ProfileName, not unique).--
 14. Give users the option to delete accounts.(write username as confirmation like on github)
 15. When user gets registered, at appropriate info to profile table.-done
+16. edit doesnt update the language--done
+17. clear two dots--done
