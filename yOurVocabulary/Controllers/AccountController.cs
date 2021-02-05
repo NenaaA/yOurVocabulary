@@ -171,13 +171,7 @@ namespace yOurVocabulary.Controllers
                     db.Profiles.Add(profile);
                     db.SaveChanges();
 
-                    //var profile = new Profile()
-                    //{
-                    //    ProfileName = model.ProfileName,
-                    //    Email = model.Email
-                    //};
-                    //db.Profiles.Add(profile);
-                    //db.SaveChanges();
+                    
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

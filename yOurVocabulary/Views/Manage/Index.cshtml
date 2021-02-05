@@ -1,9 +1,18 @@
 ﻿@model yOurVocabulary.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = Model.UserProfile.ProfileName;
 }
 
-<h2>@ViewBag.Title.</h2>
+
+    <h2>
+        @Model.UserProfile.ProfileName
+        <a href="@Url.Action("Edit", "Profiles")"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+
+    </h2>
+
+@*@Html.ActionLink("Details", "Details", "Profiles", new { id = Model.UserProfile.ProfileId }) |
+@Html.ActionLink("Delete", "Delete", "Profiles", new { id = Model.UserProfile.ProfileId })*@
+
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
@@ -82,6 +91,15 @@
                         </text>
                     }
                 }*@
+        </dd>
+        <dt>Apply to</dt>
+        <dd>
+            @Html.ActionLink("Become a Creator", "BecomeCreator", "Profiles")
+        </dd>
+        <dt>Delete Account:</dt>
+        <dd>
+            <button type="button" class="btn btn-danger">Action</button>
+            <a href="@Url.Action("DeleteAccount", "Profiles")" class="btn btn-danger">Delete Account</a>
         </dd>
     </dl>
 </div>

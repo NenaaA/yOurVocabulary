@@ -30,9 +30,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" id="links">
-                    @using Microsoft.AspNet.Identity
-                    <li style="margin-top:2%">@Html.ActionLink("Stories", "Index", "Stories")</li>
-                    <li style="margin-top:2%">@Html.ActionLink("Profile", "Index", "Profiles")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li style="margin-top:2%">@Html.ActionLink("Stories", "Index", "Stories")</li>
+                        <li style="margin-top:2%">@Html.ActionLink("Words", "Index", "Words")</li>
+                    }
                     @if (User.IsInRole("Admin"))
                     {
                         <li style="margin-top:2%">@Html.ActionLink("Admin", "Index", "Admin")</li>

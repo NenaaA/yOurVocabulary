@@ -1,0 +1,45 @@
+﻿@model yOurVocabulary.Models.Profile
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+            <a href="@Url.Action("Index", "Manage")" class="btn btn-default">Cancel</a>
+        </div>
+    }
+</div>
+
+
+@section scripts {
+    
+    <script>
+        @*$('#deleteButton').on('click', function () {
+            console.log("clicked");
+            bootbox.prompt("What is your name?", function (result) {
+                /* your callback code */
+                console.log(result)
+                if (result == "@Model.ProfileName") {
+                    $.ajax({
+                        method: "GET",
+                        url: "/Profiles/DeleteAccountUserNameConfirm",
+                        success: function () {
+                            console.log("cool");
+                            window.location.href = "/Home/DeletedAccount";
+                        }
+                    });
+                }
+            });
+        });*@
+    </script>
+    
+}

@@ -209,6 +209,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\CreatorApplication.cs" />
+    <Compile Include="Models\DeleteConfirmModel.cs" />
     <Compile Include="Models\DisplayStoryViewModel.cs" />
     <Compile Include="Models\DisplayWordViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -531,7 +532,7 @@
     <Content Include="Views\Words\Edit.cshtml" />
     <Content Include="Views\Words\Index.cshtml" />
     <Content Include="Views\Profiles\Create.cshtml" />
-    <Content Include="Views\Profiles\Delete.cshtml" />
+    <Content Include="Views\Profiles\DeleteAccount.cshtml" />
     <Content Include="Views\Profiles\Details.cshtml" />
     <Content Include="Views\Profiles\Edit.cshtml" />
     <Content Include="Views\Profiles\Index.cshtml" />
@@ -540,6 +541,7 @@
     <Content Include="Views\Admin\ChangeRole.cshtml" />
     <Content Include="Views\Profiles\BecomeCreator.cshtml" />
     <Content Include="Views\Home\Languages.cshtml" />
+    <Content Include="Views\Home\DeletedAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

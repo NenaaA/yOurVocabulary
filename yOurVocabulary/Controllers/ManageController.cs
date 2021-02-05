@@ -64,8 +64,14 @@ namespace yOurVocabulary.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            var profile = db.Profiles.FirstOrDefault(p => p.ProfileUser.Id == userId);
+
             var model = new IndexViewModel
             {
+                UserProfile=profile,
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),

@@ -9,6 +9,10 @@ namespace yOurVocabulary.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult DeletedProfile()
+        {
+            return View();
+        }
         //public ActionResult Languages()
         //{
         //    return View(new Languages()
