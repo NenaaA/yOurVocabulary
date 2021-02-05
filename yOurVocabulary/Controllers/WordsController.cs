@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,7 +18,31 @@ namespace yOurVocabulary.Controllers
         // GET: Words
         public ActionResult Index()
         {
-            return View(db.Words.ToList());
+            var userId = User.Identity.GetUserId();
+            var model = new List<DisplayWordViewModel>();
+            var profileWords = db.ProfileWords.
+                Where(pw => pw.Profile.ProfileUser.Id == userId).
+                Select(pw => new { pw.Word, pw.LastChecked, pw.CheckedCount }).
+                ToList();
+                
+            foreach (var profileWord in profileWords)
+            {
+                var storyID = db.StoryWords.
+                    Where(sw => sw.WordId == profileWord.Word.WordId).
+                    First().StoryId;
+
+                var lang = db.Stories.FirstOrDefault(s => s.StoryId == storyID).Language.Name;
+                model.Add(new DisplayWordViewModel
+                {
+                    WordName = profileWord.Word.Name,
+                    CheckedCount = profileWord.CheckedCount,
+                    LastChecked = profileWord.LastChecked.ToString(),
+                    Language = lang
+                });
+            }
+
+
+            return View(model);
         }
 
         // GET: Words/Details/5

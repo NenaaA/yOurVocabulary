@@ -105,7 +105,7 @@ namespace yOurVocabulary.Controllers
 
             profileStory = db.ProfileStories.Where(p => p.Profile.ProfileUser.Id == userId && p.StoryId == id).FirstOrDefault();
 
-            var model = new DisplayStoryModel() {
+            var model = new DisplayStoryViewModel() {
                 StoryId = story.StoryId,
                 Author = story.Author,
                 Title = story.Title,

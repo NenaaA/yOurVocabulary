@@ -5,7 +5,7 @@ using System.Web;
 
 namespace yOurVocabulary.Models
 {
-    public class DisplayStoryModel
+    public class DisplayStoryViewModel
     {
         public int StoryId { get; set; }
         public string Author { get; set; }

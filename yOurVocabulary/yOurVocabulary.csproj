@@ -209,7 +209,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\CreatorApplication.cs" />
-    <Compile Include="Models\DisplayStoryModel.cs" />
+    <Compile Include="Models\DisplayStoryViewModel.cs" />
+    <Compile Include="Models\DisplayWordViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
