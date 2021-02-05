@@ -10,6 +10,7 @@ using yOurVocabulary.Models;
 
 namespace yOurVocabulary.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();

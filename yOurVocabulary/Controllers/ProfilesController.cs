@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,7 +18,8 @@ namespace yOurVocabulary.Controllers
         // GET: Profiles
         public ActionResult Index()
         {
-            return View(db.Profiles.ToList());
+            var iden = User.Identity.GetUserId();
+            return View(db.Profiles.FirstOrDefault(m => m.ProfileUser.Id == iden));
         }
 
         public ActionResult BecomeCreator(int id)
