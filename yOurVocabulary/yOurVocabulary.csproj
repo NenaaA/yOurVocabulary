@@ -470,6 +470,7 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
+    <Content Include="story.png" />
     <Content Include="thelogo1.png" />
     <Content Include="word.png" />
     <Content Include="word1.png" />
