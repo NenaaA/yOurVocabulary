@@ -11,6 +11,7 @@ using yOurVocabulary.Models;
 
 namespace yOurVocabulary.Controllers
 {
+    [Authorize]
     public class WordsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
