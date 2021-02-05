@@ -9,39 +9,57 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.WordName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastChecked)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CheckedCount)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.WordName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Language)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.LastChecked)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CheckedCount)
-    </td>
-    @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>*@
-</tr>
-}
-
+<table class="table" id="wordsTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WordName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastChecked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckedCount)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WordName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Language)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastChecked)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckedCount)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                </td>*@
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts {
+
+    <script>
+
+        $(document).ready(function () {
+            $('#wordsTable').DataTable();
+        });
+
+    </script>    
+    
+}
