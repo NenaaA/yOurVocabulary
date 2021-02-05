@@ -18,6 +18,55 @@ namespace yOurVocabulary.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //public ActionResult CheckWord(string wordName)
+        //{
+        //    var userId = User.Identity.GetUserId();
+        //    wordName = wordName.ToLower();
+        //    string tempWord = wordName.ToLower();
+
+        //    char firstLetter = tempWord[0];
+        //    char lastLetter = tempWord[tempWord.Length - 1];
+        //    while (!Char.IsLetter(firstLetter))
+        //    {
+        //        tempWord = tempWord.Remove(0, 1);
+        //        firstLetter = tempWord[0];
+        //    }
+        //    while (!Char.IsLetter(lastLetter))
+        //    {
+        //        tempWord = tempWord.Remove(tempWord.Length - 1);
+        //        lastLetter = tempWord[tempWord.Length - 1];
+        //    }
+
+
+        //    var word = db.Words.FirstOrDefault(w=>w.Name== tempWord);
+        //    var profile = db.Profiles.FirstOrDefault(p => p.ProfileUser.Id == userId);
+        //    var profileWord = db.ProfileWords.
+        //        FirstOrDefault(pw => pw.ProfileId == profile.ProfileId && pw.WordId == word.WordId);
+
+        //    if (profileWord == null)
+        //    {
+        //        profileWord = new ProfileWord()
+        //        {
+        //            Profile = profile,
+        //            Word = word,
+        //            CheckedCount = 0,
+        //            LastChecked = DateTime.Now
+        //        };
+        //        db.ProfileWords.Add(profileWord);
+        //    }
+        //    else
+        //    {
+        //        profileWord.LastChecked = DateTime.Now;
+        //        profileWord.CheckedCount += 1;
+        //    }
+
+        //    db.SaveChanges();
+
+
+
+        //    return RedirectToAction("Index", "Stories");
+        //}
+
         public ActionResult Finish(int? id, int? rating)
         {
             if (id == null)

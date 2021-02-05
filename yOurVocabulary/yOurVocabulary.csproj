@@ -526,10 +526,6 @@
     <Content Include="Views\Stories\Details.cshtml" />
     <Content Include="Views\Stories\Edit.cshtml" />
     <Content Include="Views\Stories\Index.cshtml" />
-    <Content Include="Views\Words\Create.cshtml" />
-    <Content Include="Views\Words\Delete.cshtml" />
-    <Content Include="Views\Words\Details.cshtml" />
-    <Content Include="Views\Words\Edit.cshtml" />
     <Content Include="Views\Words\Index.cshtml" />
     <Content Include="Views\Profiles\Create.cshtml" />
     <Content Include="Views\Profiles\DeleteAccount.cshtml" />
