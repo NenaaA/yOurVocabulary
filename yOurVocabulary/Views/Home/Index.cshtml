@@ -30,18 +30,35 @@
     <div class="col-md-4" style="background-color:rgba(207, 255, 237, 0.4); border-radius:10px; margin:0.5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
         <h4>We offer a large variety of stories in different languages to improve your language skills</h4>
 
-       
+
     </div>
     <div class="col-md-4" style="background-color:rgba(207, 255, 237, 0.4); border-radius:10px; margin:0.5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
         <h4>Don't worry if you don't know the translation of a word. <br /><br />yOur Vocabulary will translate it right away!</h4>
-        <div><img class="image-blurred-edge" src="~/word1.png" style="max-height:200px; margin-left:20%;"/> </div> <br /><br />
+        <div><img class="image-blurred-edge" src="~/word1.png" style="max-height:200px; margin-left:20%;" /> </div> <br /><br />
 
     </div>
-    <div class="col-md-4" style="background-color: rgba(207, 255, 237, 0.4); border-radius: 10px; max-width: 30%; margin: 0.5%; padding-bottom: 5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
-        <h2 style="        text-align: center;
+    @if (!Request.IsAuthenticated)
+    {
+        <div class="col-md-4" style="background-color: rgba(207, 255, 237, 0.4); border-radius: 10px; max-width: 30%; margin: 0.5%; padding-bottom: 5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
+            <h2 style="        text-align: center;
         margin-top: 20%
-">Join Now!</h2>
-        
-        <a class="btn btn-primary" style="width:98%; font-size:20px;" href="~/Account/Register">Register</a>
-    </div>
+">
+                Join Now!
+            </h2>
+
+            <a class="btn btn-primary" style="width:98%; font-size:20px;" href="~/Account/Register">Register</a>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-4" style="background-color: rgba(207, 255, 237, 0.4); border-radius: 10px; max-width: 30%; margin: 0.5%; padding-bottom: 5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
+            <h2 style="        text-align: center;
+        margin-top: 20%
+">
+                Hello Comrade!
+            </h2>
+
+            <a class="btn btn-primary" style="width:98%; font-size:20px;" href="~/Account/Stories">Start reading!</a>
+        </div>
+    }
 </div>
