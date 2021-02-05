@@ -13,6 +13,7 @@ using yOurVocabulary.Models;
 
 namespace yOurVocabulary.Controllers
 {
+    [Authorize(Roles ="Admin, Creator, User")]
     public class StoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -118,7 +119,7 @@ namespace yOurVocabulary.Controllers
 
             return View(model);
         }
-
+        [Authorize(Roles ="Admin, Creator")]
         // GET: Stories/Create
         public ActionResult Create()
         {
@@ -194,7 +195,7 @@ namespace yOurVocabulary.Controllers
 
             return View(story);
         }
-
+        [Authorize(Roles ="Admin, Creator")]
         // GET: Stories/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -233,7 +234,7 @@ namespace yOurVocabulary.Controllers
             }
             return View(story);
         }
-
+        [Authorize(Roles ="Admin, Creator")]
         // GET: Stories/Delete/5
         public ActionResult Delete(int? id)
         {

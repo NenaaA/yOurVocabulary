@@ -6,8 +6,11 @@
 
 <h2>Stories</h2>
 <style>
+    html{
+        height:100%;
+    }
     body {
-        height: 100%;
+        background:no-repeat;
         background-image: linear-gradient(#99ffd8, #e3fffe);
     }
 </style>
@@ -92,8 +95,11 @@
         </ul>
         <div class="card-body">
             <a href='@Url.Action("Details", new {id=@item.StoryId})' class="btn btn-primary">Read</a>
-            <a href='@Url.Action("Edit", new {id=@item.StoryId})' class="btn btn-success">Edit</a>
-            <a href='@Url.Action("Delete", new {id=@item.StoryId})' class="btn btn-danger">Delete</a>
+            @if (User.IsInRole("Admin") || User.IsInRole("Creator"))
+            {
+                <a href='@Url.Action("Edit", new {id=@item.StoryId})' class="btn btn-success">Edit</a>
+                <a href='@Url.Action("Delete", new {id=@item.StoryId})' class="btn btn-danger">Delete</a>
+            }
         </div>
     </div>
 </div>

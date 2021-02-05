@@ -1,33 +1,14 @@
-﻿@model IEnumerable<yOurVocabulary.Models.Profile>
+﻿@model yOurVocabulary.Models.Profile
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-
-<p>
+<p>@User.Identity.Name</p>
+@Html.ActionLink("Edit", "Edit", new { id = Model.ProfileId }) |
+@Html.ActionLink("Details", "Details", new { id = Model.ProfileId }) |
+@Html.ActionLink("Delete", "Delete", new { id = Model.ProfileId })
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProfileName)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProfileName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProfileId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProfileId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProfileId })
-        </td>
-    </tr>
-}
-
-</table>
+</p>*@
