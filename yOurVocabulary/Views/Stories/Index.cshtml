@@ -14,9 +14,12 @@
         background-image: linear-gradient(#99ffd8, #e3fffe);
     }
 </style>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("Admin") || User.IsInRole("Creator"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 @*
 <table class="table">
     <tr>
@@ -91,7 +94,7 @@
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">@item.Language.Name</li>
-            <li class="list-group-item">@item.YearWritten</li>
+            <li class="list-group-item">@item.Author</li>
         </ul>
         <div class="card-body">
             <a href='@Url.Action("Details", new {id=@item.StoryId})' class="btn btn-primary">Read</a>
