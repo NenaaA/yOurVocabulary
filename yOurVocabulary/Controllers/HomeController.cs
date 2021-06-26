@@ -9,7 +9,7 @@ namespace yOurVocabulary.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult DeletedProfile()
+        public ActionResult DeletedAccount()
         {
             return View();
         }
