@@ -6,59 +6,84 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
 <style>
     body {
-        background:no-repeat;
-        background-image: linear-gradient(#0e9524, #00d4ff);
+        background: no-repeat;
+        background-image: linear-gradient(#E2FFF2, #E1F7FF);
     }
     .image-blurred-edge {
-        background-image: url('http://lorempixel.com/200/200/city/9');
+        /*background-image: url('http://lorempixel.com/200/200/city/9');*/
         width: 200px;
         height: 200px;
         /* you need to match the shadow color to your background or image border for the desired effect*/
         box-shadow: 0 0 8px 8px rgba(207, 255, 237, 0.4);
     }
+    .intro{
+        margin-top:5%;
+        margin-bottom:5%;
+        font-size:45px;
+    }
+    .col-md-4{
+        margin:1%;
+    }
+    .boxes {
+        background-image: linear-gradient(#B7FFD8, #A7D9FF);
+        border-radius: 10px;
+        padding:2%;
+        width:30%;
+        height:400px;
+        display:inline-block;
+        border:solid;
+        border-color:#707070;
+    }
+    .boxes h4{
+        line-height:1.6;
+    }
+    .join-now {
+        text-align: center;
+        margin-top: 20%
+    }
+    .btn-join{
+        width:95%;
+    }
+    #img-books{
+        margin-top:6%;
+        margin-left:15%;
+    }
 </style>
-<div class="jumbotron" style="        background-color: rgba(89, 255, 169, 0.2);
-        box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);
-        color: #f7fffc
-">
-    <h1>yOur Vocabulary</h1>
-    <p class="lead">Practise your language skills by reading short stories here</p>
-    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
-</div>
-
-<div class="row" style="        font-family: 'Montserrat', sans-serif;">
-    <div class="col-md-4" style="background-color:rgba(207, 255, 237, 0.4); border-radius:10px; margin:0.5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
-        <h4>We offer a large variety of stories in different languages to improve your language skills</h4>
-        <div><img class="image-blurred-edge" src="~/story.png" style="height:250px; margin-left:20%;" /> </div><br /><br />
-
-    </div>
-    <div class="col-md-4" style="background-color:rgba(207, 255, 237, 0.4); border-radius:10px; margin:0.5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
-        <h4>Don't worry if you don't know the translation of a word. <br /><br />yOur Vocabulary will translate it right away!</h4>
-        <div><img class="image-blurred-edge" src="~/word1.png" style="max-height:200px; margin-left:20%;" /> </div> <br /><br />
-
-    </div>
-    @if (!Request.IsAuthenticated)
-    {
-        <div class="col-md-4" style="background-color: rgba(207, 255, 237, 0.4); border-radius: 10px; max-width: 30%; margin: 0.5%; padding-bottom: 5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
-            <h2 style="        text-align: center;
-        margin-top: 20%
-">
-                Join Now!
-            </h2>
-
-            <a class="btn btn-primary" style="width:98%; font-size:20px;" href="~/Account/Register">Register</a>
+<body>
+    @*<div class="jumbotron" style="        background-color: rgba(89, 255, 169, 0.2);
+                box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);color: #f7fffc">
+            <h1>yOur Vocabulary</h1>
+            <p class="lead">Practise your language skills by reading short stories here</p>
+            @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        </div>*@
+    <p class="container intro">Practise your language skills in a creative way by reading short stories here</p>
+    <div class="container">
+    <div class="row" style="font-family: 'Montserrat', sans-serif;">
+        <div class="col-md-4 boxes">
+            <h4>We offer a large variety of stories in different languages to improve your language skills</h4>
+            <div><img class="image-blurred-edge" id="img-books" src="~/story.png"/> </div>
         </div>
-    }
-    else
-    {
-        <div class="col-md-4" style="background-color: rgba(207, 255, 237, 0.4); border-radius: 10px; max-width: 30%; margin: 0.5%; padding-bottom: 5%; box-shadow: 10px 10px 5px rgba(0, 99, 61, 1);">
-            <h2 style="        text-align: center;
-        margin-top: 20%
-">
-                Hello Comrade!
-            </h2>
-
-            <a class="btn btn-primary" style="width:98%; font-size:20px;" href="~/Stories">Start reading!</a>
+        <div class="col-md-4 boxes">
+            <h4>Don't worry if you don't know the translation of a word. yOur Vocabulary will translate it right away!</h4>
+            <div><img class="image-blurred-edge" id="img-word" src="~/word1.png"/> </div>
         </div>
-    }
-</div>
+        @if (!Request.IsAuthenticated)
+        {
+            <div class="col-md-4 boxes">
+                <h2 class="join-now"> Join Now! </h2>
+                <a class="btn btn-primary btn-join" href="~/Account/Register">Register</a>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-4 boxes">
+                <h2 class="join-now">
+                    Hello Comrade!
+                </h2>
+
+                <a class="btn btn-primary btn-join" href="~/Stories">Start reading</a>
+            </div>
+        }
+    </div>
+    </div>
+</body>
