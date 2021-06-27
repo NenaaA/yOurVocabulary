@@ -3,12 +3,27 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<style>
+    h1{
+        text-align:center;
+    }
+    h2{
+        margin-top:5%;
+    }
+    .book {
+        font-family: 'Lora', serif;
+        max-width: 80%;
+        text-align: center;
+        font-size: large;
+        margin: auto;
+        line-height: 2.5;
+    }
+</style>
 <h2>Read</h2>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
 <div>
-    <h1 style="text-align:center">@Model.Title</h1>
+    <h1>@Model.Title</h1>
 
     <blockquote class="blockquote-reverse">
         @Model.Author<br />
@@ -16,7 +31,7 @@
         @Model.Language<br />
     </blockquote>
     <hr />
-    <div style="font-family:'Lora', serif; max-width:80%; text-align:center; font-size:large; margin:auto; line-height:2.5">
+    <div class="book">
         @{var i = 0; }
         @foreach (var item in Model.Words)
         {

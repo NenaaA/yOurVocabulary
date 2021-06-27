@@ -2,14 +2,36 @@
 @{
     ViewBag.Title = "UserList";
 }
-
-<h2>UserList</h2>
-<ol>
+<style>
+    body {
+        background-image: linear-gradient(#E2FFF2, #E1F7FF);
+    }
+    h2{
+        margin-top:5%;
+        margin-bottom:4%;
+    }
+    .userList li{
+        margin-bottom:4%;
+    }
+    .userList li a{
+        float:right;
+        margin-right:70%;
+        margin-top:-1%;
+    }
+    .alert {
+        margin-top: 2%;
+    }
+    button{
+        margin-left:20%;
+    }
+</style>
+<h2>User List</h2>
+<ol class="userList">
     @foreach (var item in Model.UserList)
     {
 
     <li>
-        @item.Email - @Model.RoleList.Where(r => r.Id == @item.Roles.First().RoleId).Select(r => r.Name).First()
+        @item.Email &nbsp;-&nbsp; @Model.RoleList.Where(r => r.Id == @item.Roles.First().RoleId).Select(r => r.Name).First()
         <a href='@Url.Action("ChangeRole", new { id=@item.Id })' class="btn btn-primary">Change Role</a>
         @{
             var candidate = Model.CreatorCandidates.Find(c => c.UserId==item.Id);
@@ -21,7 +43,7 @@
                                 <a class="alert-link" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                     Check the application message
                                 </a>
-                                <button data-id="@candidate.Id" class="btn btn-primary delete-ajax">Reject</button>
+                                <button data-id="@candidate.Id" class="btn btn-danger delete-ajax">Reject</button>
                             </div>
                     <div class="collapse" id="collapseExample">
                         <div class="well">

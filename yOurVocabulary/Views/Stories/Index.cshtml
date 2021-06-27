@@ -4,88 +4,52 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Stories</h2>
 <style>
-    html{
-        height:100%;
+     body {
+         background: no-repeat;
+         background-image: linear-gradient(#E2FFF2, #E1F7FF);
+     }
+     .create{
+         margin-left:86%;
+     }
+     h2{
+         margin-top:5%;
+         margin-left:4%;
+     }
+    .stories {
+        display: inline-block;
+        margin-left: 4%;
+        margin-top:4%;
+        padding:10px;
+        border:solid thin;
+        border-radius:10px;
+        border-color:cadetblue;
     }
-    body {
-        background:no-repeat;
-        background-image: linear-gradient(#99ffd8, #e3fffe);
+    .card {
+        width: 20rem;
+    }
+    .card-img-top {
+        width: 20rem;
+        height:15rem;
+    }
+    .card-title{
+        text-align:center;
+        font-size:large;
     }
 </style>
+
+<h2>Stories</h2>
 @if (User.IsInRole("Admin") || User.IsInRole("Creator"))
 {
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
-@*
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Author)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearWritten)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Language)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TheStory)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YearWritten)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Language)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-        <td>
-            <img src="@item.ImageURL" style="max-width:300px"/>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TheStory) dont display later
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<p class="create">
+    <a href='@Url.Action("Create", "Stories")' class="btn btn-success">Create New</a>
+</p>
 }
 
-</table> *@
 @foreach (var item in Model)
-{<div style="        display: inline-block;
-        margin-left: 5px;
-        margin-left: 5px;
-        margin-bottom: 10px">
-    <div class="card" style="width: 19rem;">
-        <img src="@item.ImageURL" class="card-img-top" alt="..." style="max-width:19rem">
+{<div class="stories">
+    <div class="card">
+        <img src="@item.ImageURL" class="card-img-top" alt="Story Cover Image">
         <div class="card-body">
             <h5 class="card-title">@item.Title</h5>
             <p class="card-text">

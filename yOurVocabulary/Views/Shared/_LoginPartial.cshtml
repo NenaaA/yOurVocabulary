@@ -1,12 +1,17 @@
 ﻿@using Microsoft.AspNet.Identity
 
     <style>
-        #links li a {
-            color: black;
+        .links li a {
+            margin-top:7%;
+            color: gray;
+            font-size:large;
         }
 
-        #links li a:hover {
-            color: darkslategrey;
+        .links li a:hover {
+            color: white;
+        }
+        #username a{
+            margin-top:3%;
         }
     </style>
 
@@ -16,8 +21,8 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
+    <ul class="nav navbar-nav navbar-right links">
+        <li id="username">
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
@@ -26,7 +31,7 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right" id="links">
+    <ul class="nav navbar-nav navbar-right links">
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
